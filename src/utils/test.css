@@ -1,0 +1,45 @@
+.custom-select {
+    appearance: none;
+    /* Removes default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f7f7f7;
+    /* Light background color for dropdown */
+    border: 2px solid #e0e0e0;
+    /* Light border */
+    border-radius: 50px;
+    /* Matches your design */
+    padding: 10px 30px;
+    /* Add space for custom arrow */
+    font-size: 16px;
+    /* Adjust font size */
+    color: #333;
+    /* Dark text color */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    /* Custom down arrow */
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    /* Adjust arrow position */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    transition: all 0.3s ease-in-out;
+    /* Smooth transition on hover */
+}
+
+.custom-select:focus {
+    border-color: #007BFF;
+    /* Highlight border on focus */
+    box-shadow: 0px 4px 6px rgba(0, 123, 255, 0.4);
+    /* Highlight shadow on focus */
+    outline: none;
+    /* Remove outline */
+    border-radius: 50opx;
+}
+
+.custom-select:hover {
+    background-color: #fff;
+    /* Slight change on hover */
+    border-color: #dcdcdc;
+    /* Slight change on hover */
+    border-radius: 50opx;
+}
