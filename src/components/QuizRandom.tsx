@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { SERVER_URL } from '../../api';
@@ -117,9 +117,9 @@ const QuizRandom = ({ darkMode }: any) => {
   const [confirmChapterId, setConfirmChapterId] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleExpGPT = () => {
-    setIsGPTShow(!isGPTShow);
-  }
+  const handleExpGPT = useCallback(() => {
+    setIsGPTShow(prev => !prev);
+  }, []);
 
 
 
@@ -182,6 +182,14 @@ const QuizRandom = ({ darkMode }: any) => {
       setChapterIds(ids);
     }
   }, [chaptersParam]);
+
+
+  useEffect(() => {
+    // Reset selected options whenever a new question is loaded
+    setSelectedOptions([]);
+    setConfirmedAnswer(false);
+    setShowResult(null);
+  }, [currentQuestionIndex]);
 
   const handleTimingButtonClick = (timingOption: 'again' | 'complex' | 'gotit') => {
     saveTimeForCurrentQuestion();
@@ -246,6 +254,7 @@ const QuizRandom = ({ darkMode }: any) => {
     fetchUser();
   }, []);
 
+
   const handleConfirm = async () => {
     console.log("GAREEB", { confirmedAnswer, isConfirmedCompleted, isMarkInStatus, isMarkStatus, savingResults });
 
@@ -303,7 +312,7 @@ const QuizRandom = ({ darkMode }: any) => {
         newStatus[currentQuestionIndex] = answeredStatus;
         return newStatus;
       });
-      setShowResult(true);
+      // setShowResult(true);
       setIsAnswerMarked(false);
       return;
     }
@@ -322,8 +331,8 @@ const QuizRandom = ({ darkMode }: any) => {
       const newStatus = [...prevStatus];
       newStatus[currentQuestionIndex] = answeredStatus;
       return newStatus;
-    });
-    setShowResult(isCorrect);
+    }); 
+    setShowResult(true);
     setConfirmedAnswer(true);
     if (isCorrect) {
       try {
@@ -369,6 +378,7 @@ const QuizRandom = ({ darkMode }: any) => {
         newStatus[currentQuestionIndex] = 'correct';
         return newStatus;
       });
+      setShowResult(true);
 
       // setIsConfirmedCompleted(false);
       // setIsAnswerMarked(true);
@@ -389,6 +399,8 @@ const QuizRandom = ({ darkMode }: any) => {
         newStatus[currentQuestionIndex] = 'incorrect';
         return newStatus;
       });
+      setShowResult(true);
+
       // setIsConfirmedCompleted(false);
       // setIsAnswerMarked(true);
       // setIncorrectAnswersCount((prevCount) => prevCount + 1);
@@ -561,12 +573,7 @@ const QuizRandom = ({ darkMode }: any) => {
     }
   }, [isConfirmedCompleted, isMarkStatus, isMarkInStatus])
 
-  useEffect(() => {
-    // Reset selected options whenever a new question is loaded
-    setSelectedOptions([]);
-    setConfirmedAnswer(false);
-    setShowResult(null);
-  }, [currentQuestionIndex]);
+
 
   const renderExplanation = () => {
     const question = questions[currentQuestionIndex];

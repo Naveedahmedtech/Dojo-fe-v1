@@ -5,13 +5,13 @@ import { Chart, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend }
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ChapterGradeChart = ({
+    subjectsData,
     chaptersData,
     chapterPercentageData,
-    interval,
-    getYTickValues
+    setSelectedSubject,
+    setChaptersData,
+    setView,
 }: any) => {
-
-    console.log("chaptersData", chaptersData);
 
     // Prepare the data for Chart.js
     const data = {
@@ -88,6 +88,16 @@ const ChapterGradeChart = ({
                 display: true,
                 color: 'white',
             },
+        },
+        onClick: (event: any, elements: any) => {
+            const e = event.target;
+            console.log(e)
+            if (elements.length > 0) {
+                setView('subject');
+                const firstSubject = subjectsData[0] || null;
+                setSelectedSubject(firstSubject);
+                setChaptersData(firstSubject ? firstSubject.chapters : []);
+            }
         },
     };
 

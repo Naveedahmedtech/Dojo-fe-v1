@@ -338,7 +338,7 @@ const QuizLearn = ({ darkMode }: any) => {
           return newStatus;
         });
 
-        setShowResult(true);
+        setShowResult(false);
         setIsAnswerMarked(false);
 
         setIsReadOnly(true);
@@ -410,6 +410,8 @@ const QuizLearn = ({ darkMode }: any) => {
         return newStatus;
       });
     }
+    setShowResult(true);
+
   }, [confirmedAnswer, isAnswerMarked, questions, currentQuestionIndex]);
 
   const handleMarkAsNotCorrect = () => {
@@ -421,6 +423,7 @@ const QuizLearn = ({ darkMode }: any) => {
         return newStatus;
       });
     }
+    setShowResult(true);
   };
 
   const saveTimeForCurrentQuestion = () => {
