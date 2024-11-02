@@ -62,6 +62,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
           
               {userInfo.role === 'admin' && (
                 <>
+                  <Link to="/admin/feedback" className={`${location.pathname === '/admin/feedback' ? 'border-b-2' : ''}`}>FeedBack</Link>
                   <Link to="/admin/addtodatabase" className={`${location.pathname === '/admin/addtodatabase' ? 'border-b-2' : ''}`}>Add to Database</Link>
                   <Link to="/admin/deletefromdatabase" className={`${location.pathname === '/admin/deletefromdatabase' ? 'border-b-2' : ''}`}>Delete from Database</Link>
                 </>

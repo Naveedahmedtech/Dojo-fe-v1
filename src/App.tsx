@@ -29,6 +29,8 @@ import localforage from 'localforage';
 import AppLoader from './components/loading/AppLoader';
 import CourseRecords from './pages/CourseRecords';
 import AdminHome from './pages/AdminHome';
+import Footer from './components/modified-design/Footer/Footer';
+import FeedbackList from './components/FeedbackList';
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState(() => {
@@ -294,6 +296,14 @@ const AppContent: React.FC<{ darkMode: boolean, toggleDarkMode: () => void }> = 
           }
         />
         <Route
+          path="/admin/feedback"
+          element={
+            <ProtectedRoute allowedRoles={['admin', 'teacher']}>
+              <FeedbackList  darkMode={darkMode} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/average-grade"
           element={
             <ProtectedRoute allowedRoles={['admin', 'teacher']}>
@@ -361,9 +371,11 @@ const AppContent: React.FC<{ darkMode: boolean, toggleDarkMode: () => void }> = 
           path="/auth/reset-password/:userId/:token"
           element={<ResetPassword />}
         />
+
         {/* Add other routes here */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Footer darkMode={darkMode} />
       <div className='text-xs text-gray-400 flex justify-end fixed bottom-0 right-0 mr-2 mb-2'>
         Icons by&nbsp;<Link to="https://icons8.com">Icons8</Link>
       </div>

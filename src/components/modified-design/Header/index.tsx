@@ -64,7 +64,7 @@ const Header = ({ darkMode, toggleDarkMode }: any) => {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-6">
-                        <nav className="hidden md:flex space-x-8">
+                        <nav className="hidden md:flex space-x-4">
                             {(userInfo?.role === 'admin') && (
                                 <NavLink
                                     to="/admin-home"
@@ -156,6 +156,16 @@ const Header = ({ darkMode, toggleDarkMode }: any) => {
                                         }
                                     >
                                         Delete from Database
+                                    </NavLink>
+                                    <NavLink
+                                        to="/admin/feedback"
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? `${darkMode || isDarkMode ? 'text-white' : 'text-black'} underline underline-offset-4 flex items-center font-bold`
+                                                : `${darkMode || isDarkMode ? 'text-gray-400' : 'text-gray-500'} hover:${darkMode || isDarkMode ? 'text-white' : 'text-black'} flex items-center`
+                                        }
+                                    >
+                                        Feedback
                                     </NavLink>
                                 </>
                             )}
