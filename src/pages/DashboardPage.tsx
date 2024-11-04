@@ -313,7 +313,7 @@ const DashboardPage = ({ darkMode }: any) => {
 
 
   return (
-    <div className='main-container-space'>
+    <div className='main-container-space hidden md:block'>
       {
         teacherNotFound ? (
           <>

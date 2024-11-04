@@ -35,7 +35,7 @@ const Header = ({ darkMode, toggleDarkMode }: any) => {
     };
 
     return (
-        <header className={`shadow-md z-10 relative ${darkMode || isDarkMode ? 'bg-gray-800' : 'bg-slate-100'}`}>
+        <header className={`shadow-md z-10 hidden md:block  relative ${darkMode || isDarkMode ? 'bg-gray-800' : 'bg-slate-100'}`}>
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}

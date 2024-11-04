@@ -27,7 +27,7 @@ const ResultsPage = ({ darkMode }:any) => {
   }, [id]);
 
   return (
-    <div className='p-4 pt-0'>
+    <div className='p-4 pt-0 hidden md:block'>
       {role === 'admin' || role === 'teacher' ? (
         <div className='flex flex-row'>
         <div className="mb-4">

@@ -53,7 +53,7 @@ const MainContainer: React.FC<{
     getQuizDetails
 }) => {
         return (
-            <div className='mb-28'>
+            <div className='mb-28 hidden md:block'>
                 <Background backgroundImage={backgroundImage} />
                 <div className="relative z-10 mx-auto mt-0 max-w-screen-xl main-container-space">
                     <div className="flex flex-col items-center">
